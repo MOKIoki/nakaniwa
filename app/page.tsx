@@ -1,25 +1,29 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 const rooms = [
   {
+    label: "読む",
     name: "本の部屋",
     sub: "book-room",
     desc: "本を読み終えたあと、少しだけ話す場所。",
-    label: "本の部屋へ",
+    linkLabel: "本の部屋へ",
     href: "https://book-room-tau.vercel.app/",
   },
   {
+    label: "観る",
     name: "映画の部屋",
     sub: "movie-room",
     desc: "映画を観たあと、残ったものを置く場所。",
-    label: "映画の部屋へ",
+    linkLabel: "映画の部屋へ",
     href: "https://movie-room-bice.vercel.app/",
   },
   {
+    label: "鳴らす",
     name: "音の稽古場",
     sub: "さんしんリズム稽古",
     desc: "30秒で、三線にふれる小さな音ゲー。",
-    label: "音の稽古場へ",
+    linkLabel: "音の稽古場へ",
     href: "https://sanshin-rhythm.vercel.app/",
   },
 ];
@@ -27,7 +31,6 @@ const rooms = [
 export default function Home() {
   return (
     <main style={styles.main}>
-      {/* ヘッダー */}
       <header style={styles.header}>
         <h1 style={styles.h1}>小さなWebの中庭</h1>
         <p style={styles.lead}>
@@ -45,51 +48,49 @@ export default function Home() {
         <p style={styles.leadSub}>気になるところから、少しだけどうぞ。</p>
       </header>
 
-      {/* 入口カード */}
-      <section style={styles.cards}>
-        {rooms.map((room) => (
-          <article key={room.name} style={styles.card}>
-            <p style={styles.cardSub}>{room.sub}</p>
-            <h2 style={styles.cardName}>{room.name}</h2>
-            <p style={styles.cardDesc}>{room.desc}</p>
-            <a
-              href={room.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={styles.cardLink}
-            >
-              {room.label} →
-            </a>
-          </article>
-        ))}
+      <section style={styles.cardsSection}>
+        <p style={styles.cardsHeading}>中庭に面した場所</p>
+        <div style={styles.cards}>
+          {rooms.map((room) => (
+            <article key={room.name} style={styles.card}>
+              <p style={styles.cardLabel}>{room.label}</p>
+              <p style={styles.cardSub}>{room.sub}</p>
+              <h2 style={styles.cardName}>{room.name}</h2>
+              <p style={styles.cardDesc}>{room.desc}</p>
+              <a
+                href={room.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.cardLink}
+              >
+                {room.linkLabel} →
+              </a>
+            </article>
+          ))}
+        </div>
       </section>
 
-      {/* この中庭について */}
-      <section style={styles.about}>
-        <h2 style={styles.aboutTitle}>この中庭について</h2>
-        <p style={styles.aboutText}>
-          ここは、小さく作られたWebの入口です。
-          <br />
-          最初は、自分で作った場所から並べています。
-          <br />
-          いつか、ほかの小さな場所も、
-          <br />
-          少しずつ隣に置けるようにしたいと考えています。
-        </p>
-      </section>
+      <div style={styles.lower}>
+        <section style={styles.lowerSection}>
+          <h2 style={styles.lowerTitle}>この中庭について</h2>
+          <p style={styles.lowerText}>
+            ここは、小さく作られたWebの入口です。
+            最初は、自分で作った場所から並べています。
+            いつか、ほかの小さな場所も、少しずつ隣に置けるようにしたいと考えています。
+          </p>
+        </section>
 
-      {/* 中庭の記録 */}
-      <section style={styles.notes}>
-        <h2 style={styles.notesTitle}>中庭の記録</h2>
-        <p style={styles.notesDesc}>
-          AIと小さなWebを作って、直して、続ける記録。
-          <br />
-          できあがったものだけでなく、迷ったことや削ったことも少しずつ残していきます。
-        </p>
-        <Link href="/notes" style={styles.notesLink}>
-          記録を読む →
-        </Link>
-      </section>
+        <section style={styles.lowerSection}>
+          <h2 style={styles.lowerTitle}>中庭の記録</h2>
+          <p style={styles.lowerText}>
+            AIと小さなWebを作って、直して、続ける記録。
+            できあがったものだけでなく、迷ったことや削ったことも少しずつ残していきます。
+          </p>
+          <Link href="/notes" style={styles.lowerLink}>
+            記録を読む →
+          </Link>
+        </section>
+      </div>
 
       <footer style={styles.footer}>
         <p style={styles.footerText}>小さなWebの中庭</p>
@@ -98,105 +99,112 @@ export default function Home() {
   );
 }
 
-const styles: { [key: string]: React.CSSProperties } = {
+const styles: { [key: string]: CSSProperties } = {
   main: {
     maxWidth: "640px",
     margin: "0 auto",
-    padding: "4rem 1.5rem 6rem",
+    padding: "5rem 1.5rem 6rem",
   },
   header: {
-    marginBottom: "4rem",
+    marginBottom: "5rem",
   },
   h1: {
-    fontSize: "1.6rem",
+    fontSize: "1.5rem",
     fontWeight: "normal",
-    letterSpacing: "0.08em",
-    marginBottom: "2rem",
+    letterSpacing: "0.1em",
+    marginBottom: "2.2rem",
     color: "#2c2c2c",
   },
   lead: {
-    fontSize: "1.05rem",
-    lineHeight: "2",
+    fontSize: "1rem",
+    lineHeight: "2.1",
     marginBottom: "1.2rem",
     color: "#2c2c2c",
   },
   leadSub: {
-    fontSize: "0.95rem",
-    lineHeight: "2",
-    marginBottom: "1rem",
+    fontSize: "0.9rem",
+    lineHeight: "2.1",
+    marginBottom: "0.8rem",
     color: "#6b6560",
+  },
+  cardsSection: {
+    marginBottom: "5rem",
+  },
+  cardsHeading: {
+    fontSize: "0.75rem",
+    color: "#9b948e",
+    letterSpacing: "0.12em",
+    marginBottom: "1.2rem",
   },
   cards: {
     display: "flex",
     flexDirection: "column",
-    gap: "2rem",
-    marginBottom: "5rem",
+    gap: "1.25rem",
   },
   card: {
-    borderTop: "1px solid #ddd9d4",
-    paddingTop: "1.5rem",
+    border: "1px solid #ddd9d4",
+    borderRadius: "4px",
+    padding: "1.5rem 1.5rem 1.4rem",
+    backgroundColor: "#faf9f7",
+  },
+  cardLabel: {
+    display: "inline-block",
+    fontSize: "0.7rem",
+    color: "#9b948e",
+    letterSpacing: "0.1em",
+    border: "1px solid #ddd9d4",
+    borderRadius: "2px",
+    padding: "0.15em 0.6em",
+    marginBottom: "0.8rem",
   },
   cardSub: {
-    fontSize: "0.8rem",
-    color: "#9b948e",
-    letterSpacing: "0.05em",
-    marginBottom: "0.3rem",
+    fontSize: "0.78rem",
+    color: "#b0a9a3",
+    letterSpacing: "0.04em",
+    marginBottom: "0.25rem",
   },
   cardName: {
-    fontSize: "1.15rem",
+    fontSize: "1.1rem",
     fontWeight: "normal",
     letterSpacing: "0.05em",
     marginBottom: "0.6rem",
     color: "#2c2c2c",
   },
   cardDesc: {
-    fontSize: "0.9rem",
+    fontSize: "0.88rem",
     color: "#6b6560",
-    lineHeight: "1.8",
-    marginBottom: "1rem",
+    lineHeight: "1.85",
+    marginBottom: "1.1rem",
   },
   cardLink: {
-    fontSize: "0.85rem",
+    fontSize: "0.83rem",
     color: "#4a6741",
     letterSpacing: "0.03em",
   },
-  about: {
+  lower: {
     borderTop: "1px solid #ddd9d4",
     paddingTop: "2.5rem",
-    marginBottom: "3rem",
+    display: "flex",
+    flexDirection: "column",
+    gap: "2.5rem",
+    marginBottom: "4rem",
   },
-  aboutTitle: {
-    fontSize: "0.85rem",
+  lowerSection: {},
+  lowerTitle: {
+    fontSize: "0.78rem",
     fontWeight: "normal",
     color: "#9b948e",
-    letterSpacing: "0.08em",
-    marginBottom: "1rem",
+    letterSpacing: "0.1em",
+    marginBottom: "0.7rem",
   },
-  aboutText: {
-    fontSize: "0.9rem",
-    color: "#6b6560",
+  lowerText: {
+    fontSize: "0.87rem",
+    color: "#7a7470",
     lineHeight: "2",
-  },
-  notes: {
-    borderTop: "1px solid #ddd9d4",
-    paddingTop: "2.5rem",
-    marginBottom: "3rem",
-  },
-  notesTitle: {
-    fontSize: "0.85rem",
-    fontWeight: "normal",
-    color: "#9b948e",
-    letterSpacing: "0.08em",
     marginBottom: "0.8rem",
   },
-  notesDesc: {
-    fontSize: "0.9rem",
-    color: "#6b6560",
-    lineHeight: "2",
-    marginBottom: "1rem",
-  },
-  notesLink: {
-    fontSize: "0.85rem",
+  lowerLink: {
+    fontSize: "0.83rem",
     color: "#4a6741",
     letterSpacing: "0.03em",
   },
@@ -206,8 +214,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     textAlign: "center",
   },
   footerText: {
-    fontSize: "0.8rem",
+    fontSize: "0.78rem",
     color: "#9b948e",
-    letterSpacing: "0.08em",
+    letterSpacing: "0.1em",
   },
 };
