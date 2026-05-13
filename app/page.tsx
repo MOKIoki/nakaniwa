@@ -6,7 +6,7 @@ const rooms = [
     sub: "book-room",
     desc: "本を読み終えたあと、少しだけ話す場所。",
     label: "本の部屋へ",
-    href: "https://book-room-sigma.vercel.app/",
+    href: "https://book-room-tau.vercel.app/",
   },
   {
     name: "映画の部屋",
