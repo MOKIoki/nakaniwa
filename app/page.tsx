@@ -72,15 +72,6 @@ export default function Home() {
 
       <div style={styles.lower}>
         <section style={styles.lowerSection}>
-          <h2 style={styles.lowerTitle}>この中庭について</h2>
-          <p style={styles.lowerText}>
-            ここは、小さく作られたWebの入口です。
-            最初は、自分で作った場所から並べています。
-            いつか、ほかの小さな場所も、少しずつ隣に置けるようにしたいと考えています。
-          </p>
-        </section>
-
-        <section style={styles.lowerSection}>
           <h2 style={styles.lowerTitle}>中庭の記録</h2>
           <p style={styles.lowerText}>
             作ったものを置き、直し、続ける中で見えてきたことを、少しずつ残しています。
