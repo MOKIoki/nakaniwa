@@ -67,6 +67,16 @@ export default function Home() {
               </a>
             </article>
           ))}
+          <article style={styles.emptyCard}>
+            <p style={styles.cardLabel}>余白</p>
+            <p style={styles.cardSub}>これから置かれる場所</p>
+            <h2 style={styles.cardName}>まだ空いている場所</h2>
+            <p style={styles.cardDesc}>
+              いまは、自分で作った小さなWebから並べています。
+              いつか、ほかの人の小さな場所も、隣に置けるようにしたいと考えています。
+            </p>
+            <p style={styles.emptyNote}>まだ準備中</p>
+          </article>
         </div>
       </section>
 
@@ -137,6 +147,13 @@ const styles: { [key: string]: CSSProperties } = {
     padding: "1.5rem 1.5rem 1.4rem",
     backgroundColor: "#faf9f7",
   },
+  emptyCard: {
+    border: "1px dashed #ddd9d4",
+    borderRadius: "4px",
+    padding: "1.5rem 1.5rem 1.4rem",
+    backgroundColor: "#fbfaf8",
+    opacity: 0.82,
+  },
   cardLabel: {
     display: "inline-block",
     fontSize: "0.7rem",
@@ -170,6 +187,12 @@ const styles: { [key: string]: CSSProperties } = {
     fontSize: "0.83rem",
     color: "#4a6741",
     letterSpacing: "0.03em",
+  },
+  emptyNote: {
+    fontSize: "0.8rem",
+    color: "#b0a9a3",
+    letterSpacing: "0.04em",
+    margin: 0,
   },
   lower: {
     borderTop: "1px solid #ddd9d4",
