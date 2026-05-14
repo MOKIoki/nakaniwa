@@ -60,7 +60,7 @@ export default function Home() {
               <p style={styles.cardSub}>{room.sub}</p>
               <h2 style={styles.cardName}>{room.name}</h2>
               <p style={styles.cardDesc}>{room.desc}</p>
-              
+              <a
                 href={room.href}
                 target="_blank"
                 rel="noopener noreferrer"
