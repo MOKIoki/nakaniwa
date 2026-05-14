@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { getLatestNotes } from "@/lib/notes";
 
 const rooms = [
   {
@@ -29,6 +30,8 @@ const rooms = [
 ];
 
 export default function Home() {
+  const latestNotes = getLatestNotes(3);
+
   return (
     <main style={styles.main}>
       <header style={styles.header}>
@@ -57,7 +60,7 @@ export default function Home() {
               <p style={styles.cardSub}>{room.sub}</p>
               <h2 style={styles.cardName}>{room.name}</h2>
               <p style={styles.cardDesc}>{room.desc}</p>
-              <a
+              
                 href={room.href}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -83,9 +86,21 @@ export default function Home() {
         <section style={styles.lowerSection}>
           <h2 style={styles.lowerTitle}>中庭の記録</h2>
           <p style={styles.lowerText}>
-            AIと小さなWebを作って、直して、続ける記録。
-            できあがったものだけでなく、迷ったことや削ったことも少しずつ残していきます。
+            作ったものを置き、直し、続ける中で見えてきたことを、少しずつ残しています。
           </p>
+          <ul style={styles.noteList}>
+            {latestNotes.map((note) => (
+              <li key={note.slug}>
+                <Link href={`/notes/${note.slug}`} style={styles.noteCardLink}>
+                  <article style={styles.noteCard}>
+                    <time style={styles.noteDate}>{note.date}</time>
+                    <p style={styles.noteTitle}>{note.title}</p>
+                    <p style={styles.noteExcerpt}>{note.excerpt}</p>
+                  </article>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <Link href="/notes" style={styles.lowerLink}>
             記録を読む →
           </Link>
@@ -207,6 +222,40 @@ const styles: { [key: string]: CSSProperties } = {
     fontSize: "0.83rem",
     color: "#4a6741",
     letterSpacing: "0.03em",
+  },
+  noteList: {
+    listStyle: "none",
+    padding: 0,
+    margin: "0 0 1rem",
+    display: "flex",
+    flexDirection: "column",
+  },
+  noteCardLink: {
+    textDecoration: "none",
+    color: "inherit",
+    display: "block",
+  },
+  noteCard: {
+    padding: "0.9rem 0",
+    borderBottom: "1px solid #ede9e4",
+  },
+  noteDate: {
+    display: "block",
+    fontSize: "0.73rem",
+    color: "#b0a9a3",
+    letterSpacing: "0.04em",
+    marginBottom: "0.3rem",
+  },
+  noteTitle: {
+    fontSize: "0.87rem",
+    color: "#4a4540",
+    lineHeight: "1.7",
+    marginBottom: "0.25rem",
+  },
+  noteExcerpt: {
+    fontSize: "0.8rem",
+    color: "#9b948e",
+    lineHeight: "1.75",
   },
   footer: {
     borderTop: "1px solid #ddd9d4",
