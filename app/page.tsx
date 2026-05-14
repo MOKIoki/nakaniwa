@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { getLatestNotes } from "@/lib/notes";
 
 const rooms = [
   {
@@ -30,8 +29,6 @@ const rooms = [
 ];
 
 export default function Home() {
-  const latestNotes = getLatestNotes(3);
-
   return (
     <main style={styles.main}>
       <header style={styles.header}>
@@ -88,19 +85,6 @@ export default function Home() {
           <p style={styles.lowerText}>
             作ったものを置き、直し、続ける中で見えてきたことを、少しずつ残しています。
           </p>
-          <ul style={styles.noteList}>
-            {latestNotes.map((note) => (
-              <li key={note.slug}>
-                <Link href={`/notes/${note.slug}`} style={styles.noteCardLink}>
-                  <article style={styles.noteCard}>
-                    <time style={styles.noteDate}>{note.date}</time>
-                    <p style={styles.noteTitle}>{note.title}</p>
-                    <p style={styles.noteExcerpt}>{note.excerpt}</p>
-                  </article>
-                </Link>
-              </li>
-            ))}
-          </ul>
           <Link href="/notes" style={styles.lowerLink}>
             記録をすべて見る →
           </Link>
@@ -201,10 +185,15 @@ const styles: { [key: string]: CSSProperties } = {
     paddingTop: "2.5rem",
     display: "flex",
     flexDirection: "column",
-    gap: "2.5rem",
+    gap: "1.25rem",
     marginBottom: "4rem",
   },
-  lowerSection: {},
+  lowerSection: {
+    border: "1px solid #e4dfd8",
+    borderRadius: "4px",
+    padding: "1.4rem 1.5rem",
+    backgroundColor: "#fbfaf8",
+  },
   lowerTitle: {
     fontSize: "0.78rem",
     fontWeight: "normal",
