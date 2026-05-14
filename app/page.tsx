@@ -102,7 +102,7 @@ export default function Home() {
             ))}
           </ul>
           <Link href="/notes" style={styles.lowerLink}>
-            記録を読む →
+            記録をすべて見る →
           </Link>
         </section>
       </div>
