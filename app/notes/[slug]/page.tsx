@@ -41,7 +41,6 @@ export default async function NotePage({ params }: Props) {
 
         <article>
           <header style={styles.header}>
-            <time style={styles.date}>{note.date}</time>
             <h1 style={styles.heading}>{note.title}</h1>
             <p style={styles.excerpt}>{note.excerpt}</p>
           </header>
@@ -94,13 +93,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginBottom: "2.5rem",
     paddingBottom: "2rem",
     borderBottom: "1px solid #ddd9d4",
-  },
-  date: {
-    display: "block",
-    fontSize: "0.73rem",
-    color: "#b0a9a3",
-    letterSpacing: "0.04em",
-    marginBottom: "0.6rem",
   },
   heading: {
     fontSize: "1.1rem",

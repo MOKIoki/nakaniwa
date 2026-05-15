@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 export default function NotesPage() {
-  const sorted = [...notes].sort((a, b) => (a.date < b.date ? 1 : -1));
+  const sorted = notes;
 
   return (
     <main style={styles.main}>
@@ -30,7 +30,6 @@ export default function NotesPage() {
             <li key={note.slug} style={styles.listItem}>
               <Link href={`/notes/${note.slug}`} style={styles.cardLink}>
                 <article style={styles.card}>
-                  <time style={styles.date}>{note.date}</time>
                   <h2 style={styles.title}>{note.title}</h2>
                   <p style={styles.excerpt}>{note.excerpt}</p>
                   <span style={styles.readMore}>読む →</span>
@@ -99,13 +98,6 @@ const styles: { [key: string]: React.CSSProperties } = {
   card: {
     padding: "1.5rem 0",
     borderBottom: "1px solid #ddd9d4",
-  },
-  date: {
-    display: "block",
-    fontSize: "0.73rem",
-    color: "#b0a9a3",
-    letterSpacing: "0.04em",
-    marginBottom: "0.4rem",
   },
   title: {
     fontSize: "0.95rem",
