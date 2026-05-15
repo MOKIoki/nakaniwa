@@ -114,6 +114,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#4a4540",
     marginBottom: "1.5rem",
     lineHeight: "2.1",
+    textIndent: "1em",
   },
   hr: {
     border: "none",
