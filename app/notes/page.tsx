@@ -65,8 +65,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     letterSpacing: "0.03em",
   },
   header: {
-    marginBottom: "3rem",
-    paddingBottom: "2rem",
+    marginBottom: "1.6rem",
+    paddingBottom: "1.4rem",
     borderBottom: "1px solid #ddd9d4",
   },
   heading: {
