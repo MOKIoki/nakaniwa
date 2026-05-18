@@ -25,6 +25,13 @@ export default async function NotePage({ params }: Props) {
   const note = getNoteBySlug(slug);
   if (!note) notFound();
 
+    const currentIndex = notes.findIndex((item) => item.slug === slug);
+  const previousNote = currentIndex > 0 ? notes[currentIndex - 1] : null;
+  const nextNote =
+    currentIndex >= 0 && currentIndex < notes.length - 1
+      ? notes[currentIndex + 1]
+      : null;
+
   const paragraphs = note.body
     .split(/\n\n+/)
     .map((p) => p.trim())
@@ -57,7 +64,30 @@ export default async function NotePage({ params }: Props) {
             )}
           </div>
         </article>
+        {(previousNote || nextNote) && (
+          <nav style={styles.noteNav}>
+            <div>
+              {previousNote && (
+                <Link href={`/notes/${previousNote.slug}`} style={styles.noteNavCard}>
+                  <span style={styles.noteNavLabel}>前の記録</span>
+                  <span style={styles.noteNavTitle}>{previousNote.title}</span>
+                </Link>
+              )}
+            </div>
 
+            <div>
+              {nextNote && (
+                <Link
+                  href={`/notes/${nextNote.slug}`}
+                  style={{ ...styles.noteNavCard, ...styles.noteNavCardNext }}
+                >
+                  <span style={styles.noteNavLabel}>次の記録</span>
+                  <span style={styles.noteNavTitle}>{nextNote.title}</span>
+                </Link>
+              )}
+            </div>
+          </nav>
+        )}
         <footer style={styles.footer}>
           <Link href="/notes" style={styles.navLink}>
             ← 記録の一覧へ
@@ -120,6 +150,39 @@ const styles: { [key: string]: React.CSSProperties } = {
     border: "none",
     borderTop: "1px solid #ddd9d4",
     margin: "2.5rem 0",
+  },
+  noteNav: {
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "1rem",
+    marginTop: "4rem",
+    paddingTop: "2rem",
+    borderTop: "1px solid #ddd9d4",
+  },
+  noteNavCard: {
+    display: "block",
+    minHeight: "5rem",
+    padding: "1rem",
+    border: "1px solid #e3dfda",
+    borderRadius: "1rem",
+    backgroundColor: "#fffdf9",
+    textDecoration: "none",
+  },
+  noteNavCardNext: {
+    textAlign: "right",
+  },
+  noteNavLabel: {
+    display: "block",
+    marginBottom: "0.45rem",
+    fontSize: "0.72rem",
+    color: "#9b948e",
+    letterSpacing: "0.08em",
+  },
+  noteNavTitle: {
+    display: "block",
+    fontSize: "0.84rem",
+    color: "#4a6741",
+    lineHeight: "1.7",
   },
   footer: {
     marginTop: "4rem",
