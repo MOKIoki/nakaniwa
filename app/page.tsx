@@ -26,6 +26,14 @@ const rooms = [
     linkLabel: "音の稽古場へ",
     href: "https://sanshin-rhythm.vercel.app/",
   },
+    {
+    label: "見つける",
+    name: "英文を切る練習",
+    sub: "English Cut Practice",
+    desc: "英文の主語のかたまりと、文全体の動詞を見つける小さな練習。",
+    linkLabel: "英文の練習へ",
+    href: "https://english-cut-practice.vercel.app/",
+  },
 ];
 
 export default function Home() {
