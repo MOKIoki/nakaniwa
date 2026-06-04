@@ -34,19 +34,17 @@ export default function NotesPage() {
           </p>
         </header>
 
-        <ul style={styles.list}>
+        <section style={styles.indexSection} aria-label="第一部の目次">
           {firstSeriesNotes.map((note) => (
-            <li key={note.slug} style={styles.listItem}>
-              <Link href={`/notes/${note.slug}`} style={styles.cardLink}>
-                <article style={styles.card}>
-                  <h2 style={styles.title}>{note.title}</h2>
-                  <p style={styles.excerpt}>{note.excerpt}</p>
-                  <span style={styles.readMore}>読む →</span>
-                </article>
-              </Link>
-            </li>
+            <Link key={note.slug} href={`/notes/${note.slug}`} style={styles.tileLink}>
+              <article style={styles.tile}>
+                <h2 style={styles.title}>{note.title}</h2>
+                <p style={styles.excerpt}>{note.excerpt}</p>
+                <span style={styles.readMore}>読む →</span>
+              </article>
+            </Link>
           ))}
-        </ul>
+        </section>
 
         <section style={styles.moreSection}>
           <p style={styles.moreLabel}>もっと読む</p>
@@ -55,7 +53,8 @@ export default function NotesPage() {
               第二部　AIで作ること、Webに場所を持つこと
             </span>
             <span style={styles.moreText}>
-              コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、小さいままでいられるWebについて。
+              コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、
+              小さいままでいられるWebについて。
             </span>
             <span style={styles.readMore}>第二部を読む →</span>
           </Link>
@@ -72,7 +71,7 @@ const styles: Record<string, CSSProperties> = {
     padding: "0 1.5rem",
   },
   container: {
-    maxWidth: "640px",
+    maxWidth: "680px",
     margin: "0 auto",
     paddingBottom: "6rem",
   },
@@ -87,52 +86,52 @@ const styles: Record<string, CSSProperties> = {
     letterSpacing: "0.03em",
   },
   header: {
-    marginBottom: "1.6rem",
-    paddingBottom: "1.4rem",
+    marginBottom: "1.8rem",
+    paddingBottom: "1.5rem",
     borderBottom: "1px solid #ddd9d4",
   },
   heading: {
-    fontSize: "1rem",
+    fontSize: "1.05rem",
     fontWeight: "normal",
     color: "#2c2c2c",
-    margin: "0 0 0.7rem",
-    letterSpacing: "0.1em",
+    margin: "0 0 0.75rem",
+    lineHeight: "1.8",
+    letterSpacing: "0.08em",
   },
   subheading: {
-    fontSize: "0.87rem",
+    fontSize: "0.86rem",
     color: "#7a7470",
     margin: 0,
     lineHeight: "2",
   },
-  list: {
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
+  indexSection: {
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: "0.9rem",
   },
-  listItem: {
-    margin: 0,
-  },
-  cardLink: {
+  tileLink: {
     textDecoration: "none",
     color: "inherit",
     display: "block",
   },
-  card: {
-    padding: "1.5rem 0",
-    borderBottom: "1px solid #ddd9d4",
+  tile: {
+    border: "1px solid #ddd9d4",
+    borderRadius: "18px",
+    backgroundColor: "#fffdfa",
+    padding: "1.15rem 1.2rem 1.05rem",
   },
   title: {
     fontSize: "0.95rem",
     fontWeight: "normal",
     color: "#2c2c2c",
-    margin: "0 0 0.5rem",
+    margin: "0 0 0.55rem",
     lineHeight: "1.7",
     letterSpacing: "0.02em",
   },
   excerpt: {
-    fontSize: "0.83rem",
+    fontSize: "0.82rem",
     color: "#7a7470",
-    margin: "0 0 0.8rem",
+    margin: "0 0 0.85rem",
     lineHeight: "1.85",
   },
   readMore: {
@@ -141,7 +140,7 @@ const styles: Record<string, CSSProperties> = {
     letterSpacing: "0.03em",
   },
   moreSection: {
-    marginTop: "2.4rem",
+    marginTop: "2.6rem",
     paddingTop: "1.8rem",
     borderTop: "1px solid #ddd9d4",
   },
@@ -155,7 +154,10 @@ const styles: Record<string, CSSProperties> = {
     display: "block",
     textDecoration: "none",
     color: "inherit",
-    padding: "1.2rem 0 0",
+    border: "1px solid #ddd9d4",
+    borderRadius: "18px",
+    backgroundColor: "#fffdfa",
+    padding: "1.15rem 1.2rem 1.05rem",
   },
   moreTitle: {
     display: "block",
@@ -167,9 +169,9 @@ const styles: Record<string, CSSProperties> = {
   },
   moreText: {
     display: "block",
-    fontSize: "0.83rem",
+    fontSize: "0.82rem",
     color: "#7a7470",
     lineHeight: "1.85",
-    marginBottom: "0.8rem",
+    marginBottom: "0.85rem",
   },
 };
