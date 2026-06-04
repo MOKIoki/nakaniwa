@@ -3,39 +3,42 @@ import type { CSSProperties } from "react";
 import { notes } from "@/lib/notes";
 
 export const metadata = {
-  title: "中庭の記録 | 小さなWebの中庭",
-  description: "AIと小さなWebを作って、直して、続ける記録。",
+  title: "第二部 | 中庭の記録",
+  description: "AIで作ること、Webに場所を持つことについての記録。",
 };
 
-const secondSeriesSlugs = new Set([
+const secondSeriesSlugs = [
   "coding-democratization-for-whom",
   "web-place-after-sns",
   "small-web-and-non-scale-area",
   "before-technological-commune",
   "we-must-cultivate-our-garden",
-]);
+];
 
-export default function NotesPage() {
-  const firstSeriesNotes = notes.filter((note) => !secondSeriesSlugs.has(note.slug));
+export default function NotesPartTwoPage() {
+  const secondSeriesNotes = secondSeriesSlugs
+    .map((slug) => notes.find((note) => note.slug === slug))
+    .filter((note): note is NonNullable<typeof note> => Boolean(note));
 
   return (
     <main style={styles.main}>
       <div style={styles.container}>
         <nav style={styles.nav}>
-          <Link href="/" style={styles.navLink}>
-            ← 中庭へ
+          <Link href="/notes" style={styles.navLink}>
+            ← 中庭の記録へ
           </Link>
         </nav>
 
         <header style={styles.header}>
-          <h1 style={styles.heading}>中庭の記録</h1>
+          <p style={styles.kicker}>中庭の記録　第二部</p>
+          <h1 style={styles.heading}>AIで作ること、Webに場所を持つこと</h1>
           <p style={styles.subheading}>
-            AIと小さなWebを作って、直して、続ける記録。
+            コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、小さいままでいられるWebについて。
           </p>
         </header>
 
         <ul style={styles.list}>
-          {firstSeriesNotes.map((note) => (
+          {secondSeriesNotes.map((note) => (
             <li key={note.slug} style={styles.listItem}>
               <Link href={`/notes/${note.slug}`} style={styles.cardLink}>
                 <article style={styles.card}>
@@ -47,19 +50,6 @@ export default function NotesPage() {
             </li>
           ))}
         </ul>
-
-        <section style={styles.moreSection}>
-          <p style={styles.moreLabel}>もっと読む</p>
-          <Link href="/notes/part-2" style={styles.moreLink}>
-            <span style={styles.moreTitle}>
-              第二部　AIで作ること、Webに場所を持つこと
-            </span>
-            <span style={styles.moreText}>
-              コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、小さいままでいられるWebについて。
-            </span>
-            <span style={styles.readMore}>第二部を読む →</span>
-          </Link>
-        </section>
       </div>
     </main>
   );
@@ -91,11 +81,18 @@ const styles: Record<string, CSSProperties> = {
     paddingBottom: "1.4rem",
     borderBottom: "1px solid #ddd9d4",
   },
+  kicker: {
+    fontSize: "0.78rem",
+    color: "#7a7470",
+    margin: "0 0 0.8rem",
+    letterSpacing: "0.08em",
+  },
   heading: {
     fontSize: "1rem",
     fontWeight: "normal",
     color: "#2c2c2c",
     margin: "0 0 0.7rem",
+    lineHeight: "1.8",
     letterSpacing: "0.1em",
   },
   subheading: {
@@ -139,37 +136,5 @@ const styles: Record<string, CSSProperties> = {
     fontSize: "0.78rem",
     color: "#4a6741",
     letterSpacing: "0.03em",
-  },
-  moreSection: {
-    marginTop: "2.4rem",
-    paddingTop: "1.8rem",
-    borderTop: "1px solid #ddd9d4",
-  },
-  moreLabel: {
-    fontSize: "0.78rem",
-    color: "#7a7470",
-    margin: "0 0 0.8rem",
-    letterSpacing: "0.08em",
-  },
-  moreLink: {
-    display: "block",
-    textDecoration: "none",
-    color: "inherit",
-    padding: "1.2rem 0 0",
-  },
-  moreTitle: {
-    display: "block",
-    fontSize: "0.95rem",
-    color: "#2c2c2c",
-    lineHeight: "1.8",
-    marginBottom: "0.5rem",
-    letterSpacing: "0.03em",
-  },
-  moreText: {
-    display: "block",
-    fontSize: "0.83rem",
-    color: "#7a7470",
-    lineHeight: "1.85",
-    marginBottom: "0.8rem",
   },
 };
