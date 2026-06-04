@@ -20,12 +20,24 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
+const secondSeriesSlugs = new Set([
+  "coding-democratization-for-whom",
+  "web-place-after-sns",
+  "small-web-and-non-scale-area",
+  "before-technological-commune",
+  "we-must-cultivate-our-garden",
+]);
+
 export default async function NotePage({ params }: Props) {
   const { slug } = await params;
   const note = getNoteBySlug(slug);
   if (!note) notFound();
 
-    const currentIndex = notes.findIndex((item) => item.slug === slug);
+  const isSecondSeriesNote = secondSeriesSlugs.has(note.slug);
+  const backHref = isSecondSeriesNote ? "/notes/part-2" : "/notes";
+  const backLabel = isSecondSeriesNote ? "← 第二部へ" : "← 記録の一覧へ";
+
+  const currentIndex = notes.findIndex((item) => item.slug === slug);
   const previousNote = currentIndex > 0 ? notes[currentIndex - 1] : null;
   const nextNote =
     currentIndex >= 0 && currentIndex < notes.length - 1
@@ -41,8 +53,8 @@ export default async function NotePage({ params }: Props) {
     <main style={styles.main}>
       <div style={styles.container}>
         <nav style={styles.nav}>
-          <Link href="/notes" style={styles.navLink}>
-            ← 記録の一覧へ
+          <Link href={backHref} style={styles.navLink}>
+            {backLabel}
           </Link>
         </nav>
 
@@ -89,8 +101,8 @@ export default async function NotePage({ params }: Props) {
           </nav>
         )}
         <footer style={styles.footer}>
-          <Link href="/notes" style={styles.navLink}>
-            ← 記録の一覧へ
+          <Link href={backHref} style={styles.navLink}>
+            {backLabel}
           </Link>
         </footer>
       </div>
