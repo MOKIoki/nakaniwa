@@ -35,6 +35,9 @@ export default function NotesPartTwoPage() {
           <p style={styles.subheading}>
             コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、小さいままでいられるWebについて。
           </p>
+          <p style={styles.guide}>
+            このページは第二部の目次です。各回の「読む →」から本文に進めます。
+          </p>
         </header>
 
         <ul style={styles.list}>
@@ -100,6 +103,13 @@ const styles: Record<string, CSSProperties> = {
     color: "#7a7470",
     margin: 0,
     lineHeight: "2",
+  },
+  guide: {
+    fontSize: "0.8rem",
+    color: "#4a6741",
+    margin: "1rem 0 0",
+    lineHeight: "1.9",
+    letterSpacing: "0.03em",
   },
   list: {
     listStyle: "none",
