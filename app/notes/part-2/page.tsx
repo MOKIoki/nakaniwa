@@ -33,26 +33,23 @@ export default function NotesPartTwoPage() {
           <p style={styles.kicker}>中庭の記録　第二部</p>
           <h1 style={styles.heading}>AIで作ること、Webに場所を持つこと</h1>
           <p style={styles.subheading}>
-            コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、小さいままでいられるWebについて。
-          </p>
-          <p style={styles.guide}>
-            このページは第二部の目次です。各回の「読む →」から本文に進めます。
+            コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、
+            小さいままでいられるWebについて。
           </p>
         </header>
 
-        <ul style={styles.list}>
-          {secondSeriesNotes.map((note) => (
-            <li key={note.slug} style={styles.listItem}>
-              <Link href={`/notes/${note.slug}`} style={styles.cardLink}>
-                <article style={styles.card}>
-                  <h2 style={styles.title}>{note.title}</h2>
-                  <p style={styles.excerpt}>{note.excerpt}</p>
-                  <span style={styles.readMore}>読む →</span>
-                </article>
-              </Link>
-            </li>
+        <section style={styles.indexSection} aria-label="第二部の目次">
+          {secondSeriesNotes.map((note, index) => (
+            <Link key={note.slug} href={`/notes/${note.slug}`} style={styles.tileLink}>
+              <article style={styles.tile}>
+                <p style={styles.count}>第{index + 1}回</p>
+                <h2 style={styles.title}>{note.title.replace(/^第\d回　/, "")}</h2>
+                <p style={styles.excerpt}>{note.excerpt}</p>
+                <span style={styles.readMore}>読む →</span>
+              </article>
+            </Link>
           ))}
-        </ul>
+        </section>
       </div>
     </main>
   );
@@ -65,7 +62,7 @@ const styles: Record<string, CSSProperties> = {
     padding: "0 1.5rem",
   },
   container: {
-    maxWidth: "640px",
+    maxWidth: "680px",
     margin: "0 auto",
     paddingBottom: "6rem",
   },
@@ -80,8 +77,8 @@ const styles: Record<string, CSSProperties> = {
     letterSpacing: "0.03em",
   },
   header: {
-    marginBottom: "1.6rem",
-    paddingBottom: "1.4rem",
+    marginBottom: "1.8rem",
+    paddingBottom: "1.5rem",
     borderBottom: "1px solid #ddd9d4",
   },
   kicker: {
@@ -91,55 +88,53 @@ const styles: Record<string, CSSProperties> = {
     letterSpacing: "0.08em",
   },
   heading: {
-    fontSize: "1rem",
+    fontSize: "1.05rem",
     fontWeight: "normal",
     color: "#2c2c2c",
-    margin: "0 0 0.7rem",
+    margin: "0 0 0.75rem",
     lineHeight: "1.8",
-    letterSpacing: "0.1em",
+    letterSpacing: "0.08em",
   },
   subheading: {
-    fontSize: "0.87rem",
+    fontSize: "0.86rem",
     color: "#7a7470",
     margin: 0,
     lineHeight: "2",
   },
-  guide: {
-    fontSize: "0.8rem",
-    color: "#4a6741",
-    margin: "1rem 0 0",
-    lineHeight: "1.9",
-    letterSpacing: "0.03em",
+  indexSection: {
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gap: "0.9rem",
   },
-  list: {
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
-  },
-  listItem: {
-    margin: 0,
-  },
-  cardLink: {
+  tileLink: {
     textDecoration: "none",
     color: "inherit",
     display: "block",
   },
-  card: {
-    padding: "1.5rem 0",
-    borderBottom: "1px solid #ddd9d4",
+  tile: {
+    border: "1px solid #ddd9d4",
+    borderRadius: "18px",
+    backgroundColor: "#fffdfa",
+    padding: "1.15rem 1.2rem 1.05rem",
+  },
+  count: {
+    fontSize: "0.75rem",
+    color: "#4a6741",
+    margin: "0 0 0.45rem",
+    letterSpacing: "0.08em",
   },
   title: {
     fontSize: "0.95rem",
     fontWeight: "normal",
     color: "#2c2c2c",
-    margin: "0 0 0.5rem",
+    margin: "0 0 0.55rem",
     lineHeight: "1.7",
     letterSpacing: "0.02em",
   },
   excerpt: {
-    fontSize: "0.83rem",
+    fontSize: "0.82rem",
     color: "#7a7470",
-    margin: "0 0 0.8rem",
+    margin: "0 0 0.85rem",
     lineHeight: "1.85",
   },
   readMore: {
