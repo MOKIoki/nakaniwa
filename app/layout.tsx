@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "小さなWebの中庭",
@@ -18,8 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>{children}<Analytics /></body>
-      
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
