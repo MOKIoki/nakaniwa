@@ -36,6 +36,9 @@ export default function NotesPartTwoPage() {
             コーディングの民主化、SNSのあとに個人がWebに場所を持つこと、
             小さいままでいられるWebについて。
           </p>
+          <p style={styles.date}>
+            2026年6月
+          </p>
         </header>
 
         <section style={styles.indexSection} aria-label="第二部の目次">
@@ -100,6 +103,12 @@ const styles: Record<string, CSSProperties> = {
     color: "#7a7470",
     margin: 0,
     lineHeight: "2",
+  },
+  date: {
+    fontSize: "0.78rem",
+    color: "#9a948e",
+    margin: "0.9rem 0 0",
+    letterSpacing: "0.05em",
   },
   indexSection: {
     display: "grid",
